@@ -1,5 +1,7 @@
 function ajaxHandler(url, fn){ 
 
+
+
 	var xhttp;
     xhttp=new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -9,7 +11,7 @@ function ajaxHandler(url, fn){
            }
    };
     xhttp.open("GET", url, true);
-   xhttp.send();
+    xhttp.send();
 
 
 }
