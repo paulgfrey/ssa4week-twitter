@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>SSA4Week Tweet Clone Main Page</title>
 <link rel="stylesheet" href="theme.css">
+<script src="utils.js"></script>
 <script src="publictweet.js"></script>
 <script src="followers.js"></script>
 </head>
@@ -14,7 +15,7 @@
 <div class="content-left">
 	<div class="roundBorder">
 		<div style="display: inline-block;vertical-align:middle"><a href="personal.html"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT1N1nNP_x_buU8kdPsaJGDvp5ZJsrpSXD_3FV6voexGZ_apSzA" width="72"></a></div>
-		<div style="display: inline-block;vertical-align:middle"class="userTitle"><a href="personal.html">Zedong Zhang</a></div>
+		<div style="display: inline-block;vertical-align:middle" class="userTitle"><a href="personal.html"><span id="userInfoSpan"></span></a></div>
 	</div>
 	<div class="roundBorder">
 		<div><b>Followers</b></div>
@@ -34,8 +35,13 @@
 
 </div>
 <script>
-getFollowers();
-getPulicTweet();
+	ajaxHandler("Rest/userinfo/", function (userInfo) {
+		var userInfoSpan = document.getElementById("userInfoSpan");
+		userInfoSpan.innerHTML = userInfo[0]['firstName'] + " " + userInfo[0]['lastName'];
+	});
+
+	getFollowers();
+	getPulicTweet();
 </script>
 </body>
 </html>

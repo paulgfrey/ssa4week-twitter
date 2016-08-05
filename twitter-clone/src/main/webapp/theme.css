@@ -98,4 +98,9 @@ div.content-left div {
 	color:#555;
 	font-size:14px;
 	line-height:18px;
+	margin-top:5px;
+}
+
+#userInfoSpan{
+	color:#333;
 }
