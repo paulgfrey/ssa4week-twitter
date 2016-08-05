@@ -1,7 +1,4 @@
 
- var userName = "";
-
- //-----------------------------------------------------
 
   ajaxHandler("/rest/tweets/userId/personal/", function (resp) {
 
@@ -13,13 +10,6 @@
                 dataStr+='<p class="firstln">' + resp[x].fromUserId ;
                 dataStr += '</p> <p>' + resp[x].msg + '</p><p class="thirdln">' + resp[x].date + '</p><br>';
                 
-
-                if (userName===""){
-                	userName=resp[x].fromUserId;
-                }
-                
-
-                
             }
             tweetDiv.innerHTML=dataStr;
 
@@ -29,4 +19,4 @@
 //-----------------------------------------------------------------
 
   var user=document.getElementById('userName');
-  user.innerHTML=userName;
+  user.innerHTML=GetCookie(); //userName;
