@@ -54,13 +54,13 @@ public class Tweet {
 	}
 
 	@Override
-	public String toString() {
+	public String toString() { 
 		StringBuffer sb = new StringBuffer();
 		sb.append("{ ");
 		sb.append("\"seq\": \"" + seq + "\", ");
 		sb.append("\"fromUserId\": \"" + fromUserId + "\", ");
 		sb.append("\"toUserId\": \"" + toUserId + "\", ");
-		sb.append("\"msg\": \"" + msg + "\"");
+		sb.append("\"msg\": \"" + msg + "\", ");
 		sb.append("\"date\": \"" + date + "\"");
 		sb.append(" }");
 		
