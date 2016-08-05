@@ -1,6 +1,7 @@
 
+ SetCookie("Follower");
 
-  ajaxHandler("/rest/tweets/userId/personal/", function (resp) {
+  ajaxHandler("/rest/tweets/" + GetCookie() + "/personal", function (resp) {
 
   		
 
@@ -20,3 +21,5 @@
 
   var user=document.getElementById('userName');
   user.innerHTML=GetCookie(); //userName;
+
+ 
