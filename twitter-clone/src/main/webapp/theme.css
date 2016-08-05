@@ -39,20 +39,13 @@ button {
     line-height: normal;
 }
 
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
+a {
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
-}
-
-a:active {
-    text-decoration: underline;
+	color:#aa0000;
 }
 
 h1{font-size:2em;margin:.67em 0}
@@ -75,4 +68,34 @@ div.content-left div {
 .tweet-box{
 	padding:5px 10px;
 	background-color: #E5F2F7;
+}
+
+.userTitle {
+	font-size:20px;
+	font-weight:bold;
+	color:#333;
+	vertical-align:middle;
+}
+
+.tweetItem {
+	margin:5px;
+	padding:5px;
+	border-bottom:1px solid #ddd;
+}
+
+.tweetUserID {
+	font-size:14px;
+	font-weight:bold;
+	margin-right:20px;
+}
+.tweetDate{
+	font-size:12px;
+	font-weight:normal;
+	color:#888;
+}
+.tweetMsg{
+	font-weight:normal;
+	color:#555;
+	font-size:14px;
+	line-height:18px;
 }
