@@ -27,8 +27,8 @@ function SetCookie(userId){
 
 function GetCookie(){
 
-//console.log(document.cookie);
-  var useName;
+console.log(document.cookie);
+  var userName;
   var arr;
   arr=document.cookie.split("=");
   userName=arr[1];
