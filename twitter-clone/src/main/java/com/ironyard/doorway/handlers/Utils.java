@@ -22,6 +22,7 @@ public abstract class Utils {
 	public static void setUserId(HttpServletRequest request, HttpServletResponse response, String userId) {
 		Cookie cookie = new Cookie("userid", userId);
 		cookie.setDomain(request.getLocalName());
+		cookie.setPath("/");
 		cookie.setHttpOnly(false);
 		cookie.setMaxAge(7*24*60*60);
 		response.addCookie(cookie);
