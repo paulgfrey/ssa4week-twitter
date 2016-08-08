@@ -1,5 +1,8 @@
 package com.ironyard.doorway.domain;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class User {
 	private String userId;
 	private String password;
@@ -39,18 +42,5 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	@Override
-	public String toString() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("{ ");
-		sb.append("\"userId\": \"" + userId + "\", ");
-		sb.append("\"password\": \"" + password + "\", ");
-		sb.append("\"lastName\": \"" + lastName + "\", ");
-		sb.append("\"firstName\": \"" + firstName + "\"");
-		sb.append(" }");
-		
-		return(sb.toString());
 	}
 }

@@ -15,6 +15,7 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.util.resource.Resource;
 
+import com.ironyard.doorway.handlers.MyResourceHandler;
 import com.ironyard.doorway.handlers.RestAPIHandler;
 import com.ironyard.doorway.handlers.ServletHandler;
 
@@ -24,7 +25,7 @@ public class TwitterClone {
         Server server = new Server(port);
         
         HandlerList handlers = new HandlerList();
-        ResourceHandler resourceHandler = new ResourceHandler();
+        MyResourceHandler resourceHandler = new MyResourceHandler();
         resourceHandler.setBaseResource(Resource.newResource("./src/main/webapp"));
         handlers.setHandlers(new Handler[]
         { resourceHandler, new RestAPIHandler(), 
