@@ -37,6 +37,14 @@ public class TwitterClone {
 		
 		tweetsList.add(tweet1);
 		tweetsList.add(tweet2);
+		
+		User follower = new User();
+		follower.setUserId("Follower");
+		follower.setPassword("password");
+		follower.setFirstName("Jane");
+		follower.setLastName("Doe");
+		
+		followersList.add(follower);	
 	};
 	
 	public TwitterClone(int port) throws Exception {

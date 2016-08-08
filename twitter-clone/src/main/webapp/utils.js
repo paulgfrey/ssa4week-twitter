@@ -6,9 +6,11 @@ function ajaxHandler(url, fn){
     xhttp=new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
-            var responseData = JSON.parse(xhttp.responseText);
-               fn(responseData);
-           }
+			if(xhttp.responseText != "") {
+				var responseData = JSON.parse(xhttp.responseText);
+				   fn(responseData);
+			   }			
+			}
    };
    
  

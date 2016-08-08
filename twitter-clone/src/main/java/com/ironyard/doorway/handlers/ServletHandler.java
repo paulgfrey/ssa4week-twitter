@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
+import com.ironyard.doorway.TwitterClone;
+import com.ironyard.doorway.domain.User;
+
 public class ServletHandler extends AbstractHandler {
 
 	public ServletHandler() {
@@ -46,12 +49,14 @@ public class ServletHandler extends AbstractHandler {
 		String password = request.getParameter("password");
 		
 		// TODO need to use userDAO
+		User user = new User();
+		user.setUserId(request.getParameter("uidtxt"));
+		user.setPassword(request.getParameter("passtxt"));
 		
-		Cookie cookie = new Cookie("userId", userId);
-		cookie.setPath("/");
-		cookie.setSecure(true);
-		cookie.setHttpOnly(true);
-		response.addCookie(cookie);
+		TwitterClone.user = user;
+		
+		Utils.setUserId(request, response, userId);
+		
 		System.out.println("Wrote cookie userId=" + userId);
 		System.out.println("Redirect to main.html");
 		
