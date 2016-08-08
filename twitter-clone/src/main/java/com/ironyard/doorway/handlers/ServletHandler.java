@@ -25,7 +25,6 @@ public class ServletHandler extends AbstractHandler {
         if(target != null && !target.toLowerCase().contains("servlet")) {
             return;
         }
-<<<<<<< HEAD
         System.out.println("target=" + target);
         
        if(target.contains("signon")) {
@@ -41,31 +40,14 @@ public class ServletHandler extends AbstractHandler {
        baseRequest.setHandled(true);
     }
     
-    private void signOn(String target, HttpServletRequest request, 
-                        HttpServletResponse response) throws IOException {
-       response.setContentType("text/html;charset=utf-8");
-       response.setStatus(HttpServletResponse.SC_OK);
-
-=======
-        else if(target.contains("signup")) {
-        	signUp(target, request, response);
-        }
-        else {
-        	System.err.println("UNHANDLED CALL!");
-        	return;
-        }
-        baseRequest.setHandled(true);
-	}
-	
 	private void signOn(String target, HttpServletRequest request, 
 						HttpServletResponse response) throws IOException {
 		// TODO test
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
->>>>>>> 516286520251923604f68aa6612bd69c4236193e
 
-       String userId = request.getParameter("userId");
-        String password = request.getParameter("password");
+		String userId = request.getParameter("uidtxt");
+		String password = request.getParameter("passtxt");
         
         // TODO need to use userDAO
         User user = new User();
