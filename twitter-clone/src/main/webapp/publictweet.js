@@ -10,7 +10,7 @@ function getPulicTweet() {
 		for(var i = 0; i < tweets.length; i++) {
 			htmlStr += "<div class='tweetItem'>";
 			htmlStr += "<div class='floatDiv'><a href='personal.html'><img src='avater/" + tweets[i]["fromUserId"] + ".jpg' width='50'></a></div>";
-			htmlStr += "<div class='floatDiv'><div><span class='tweetUserID'>" + tweets[i]["fromUserId"] + "</span><span class='tweetDate'>" + tweets[i]["date"] + "</span></div>";
+			htmlStr += "<div class='floatDiv'><div><a href='personal.html'><span class='tweetUserID'>" + tweets[i]["fromUserId"] + "</span></a><span class='tweetDate'>" + tweets[i]["date"] + "</span></div>";
 			htmlStr += "<div class='tweetMsg'>" + tweets[i]["msg"] + "</div>";
 			htmlStr += "<div><img src='" + imagesURL[i] + "' width='500'></div></div>";
 			htmlStr += "</div>";

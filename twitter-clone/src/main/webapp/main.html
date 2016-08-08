@@ -14,7 +14,7 @@
 
 <div class="content-left">
 	<div class="roundBorder">
-		<div style="display: inline-block;vertical-align:middle"><a href="personal.html"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT1N1nNP_x_buU8kdPsaJGDvp5ZJsrpSXD_3FV6voexGZ_apSzA" width="72"></a></div>
+		<div style="display: inline-block;vertical-align:middle"><a href="personal.html"><span id="userAvater"></span></a></div>
 		<div style="display: inline-block;vertical-align:middle" class="userTitle"><a href="personal.html"><span id="userInfoSpan"></span></a></div>
 	</div>
 	<div class="roundBorder">
@@ -27,7 +27,7 @@
 <div class="content-right roundBorder">
 	<div class="tweet-box">
 		<textarea rows="2" cols="70" id="tweet_msg"></textarea>
-		<button>Tweet</button>
+		<button onclick="sendTweet();">Tweet</button>
 	</div>
 	<div id="publictweet">
 	</div>
@@ -37,11 +37,27 @@
 <script>
 	ajaxHandler("Rest/userinfo/", function (userInfo) {
 		var userInfoSpan = document.getElementById("userInfoSpan");
-		userInfoSpan.innerHTML = userInfo['firstName'] + " " + userInfo['lastName'];
+		//userInfoSpan.innerHTML = userInfo['firstName'] + " " + userInfo['lastName'];
+		userInfoSpan.innerHTML = userInfo['userId'];
+		document.getElementById("userAvater").innerHTML = "<img src='avater/" + userInfo['userId'] + ".jpg' width='72'>";
 	});
 
 	getFollowers();
 	getPulicTweet();
+	
+	function sendTweet() {
+		var msg = document.getElementById("tweet_msg").value.trim();
+		if(msg.length == 0) {
+			alert("Please write your tweet!");
+		}
+		else {
+			var useId = document.getElementById("userInfoSpan").innerText;
+			ajaxHandler("Rest/sendtweet/" + useId + "?tweetmsg=" + encodeURI(msg), function (userInfo) {
+			});
+			getPulicTweet();
+			document.getElementById("tweet_msg").value = "";
+		}
+	}
 </script>
 </body>
 </html>
