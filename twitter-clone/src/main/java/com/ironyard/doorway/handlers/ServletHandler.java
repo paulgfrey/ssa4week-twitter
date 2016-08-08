@@ -45,7 +45,7 @@ public class ServletHandler extends AbstractHandler {
        response.setContentType("text/html;charset=utf-8");
        response.setStatus(HttpServletResponse.SC_OK);
 
-<<<<<<< HEAD
+
        String userId = request.getParameter("userId");
         String password = request.getParameter("password");
         
@@ -61,31 +61,12 @@ public class ServletHandler extends AbstractHandler {
         response.sendRedirect("/main.html");
     }
     
-    private void signUp(String target, HttpServletRequest request, 
-            HttpServletResponse response) throws IOException {
-       response.setContentType("text/html;charset=utf-8");
-       response.setStatus(HttpServletResponse.SC_OK);
-=======
-        String userId = request.getParameter("uidtxt");
-		String password = request.getParameter("passtxt");
-		
-		// TODO need to use userDAO
-		User user = new User();
-		user.setUserId(request.getParameter("uidtxt"));
-		user.setPassword(request.getParameter("passtxt"));
-		
-		TwitterClone.user = user;
-		
-		Utils.setUserId(request, response, userId);
-				
-		response.sendRedirect("/main.html");
-	}
-	
+    
 	private void signUp(String target, HttpServletRequest request, 
 			HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
->>>>>>> 7ec1c53a2d0250df98225d07ce9c2bde2fc5adcc
+
 
         // TODO need to use userDAO
         User user = new User();
