@@ -1,7 +1,9 @@
 package com.ironyard.doorway.handlers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +53,9 @@ public class RestAPIHandler extends AbstractHandler {
 			HttpServletResponse response) throws IOException {
 
 		String userId = Utils.getUserId(request);
+		if(userId.length() == 0) {
+			userId = (TwitterClone.user != null) ? TwitterClone.user.getUserId() : "";
+		}
 		
 		// Get User ID
 		int ndx = target.lastIndexOf("/");
@@ -63,17 +68,10 @@ public class RestAPIHandler extends AbstractHandler {
 		response.setStatus(HttpServletResponse.SC_OK);
 
 		// TODO get User Info from followerDAO.
-
-		User[] users = new User[1];
-		users[0] = new User();
-		users[0].setUserId("Follower");
-		users[0].setPassword("password");
-		users[0].setFirstName("Jane");
-		users[0].setLastName("Doe");
 		
 
 		// Generate JSON
-		response.getWriter().println(gson.toJson(users));
+		response.getWriter().println(gson.toJson(TwitterClone.followersList.toArray(new User[0])));
 
 		Utils.setUserId(request, response, userId);
 	}
@@ -81,16 +79,32 @@ public class RestAPIHandler extends AbstractHandler {
 	private void getTweets(String target, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 
+		String userId = Utils.getUserId(request);
+		if(userId.length() == 0) {
+			userId = (TwitterClone.user != null) ? TwitterClone.user.getUserId() : "";
+		}
 		// Get User ID
 		String[] fields = target.split("/");
-		String userId = fields[3];
+		String fieldUserId = fields[3];
+		String fieldScope = fields[4];
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 
 		// TODO get User Info from tweetsDAO.
-
+		
+		List<Tweet> rtnTweets = new ArrayList<Tweet>();
+		for(Tweet tweet : TwitterClone.tweetsList) {
+			if(fieldScope.equalsIgnoreCase("personal")) {
+				if(tweet.getFromUserId().equals(fieldUserId)) {
+					rtnTweets.add(tweet);
+				}
+			}
+			else { // assume ALL
+				rtnTweets.add(tweet);
+			}
+		}
 		// Generate JSON
-		response.getWriter().println(gson.toJson(TwitterClone.tweetsList.toArray(new Tweet[0])));
+		response.getWriter().println(gson.toJson(rtnTweets.toArray(new Tweet[0])));
 		
 		Utils.setUserId(request, response, userId);
 	}
@@ -110,14 +124,14 @@ public class RestAPIHandler extends AbstractHandler {
 
 		// TODO get User Info from userDAO.
 
-		User user = new User();
-		user.setUserId("User");
-		user.setPassword("password");
-		user.setFirstName("John");
-		user.setLastName("Doe");
-
-		// Generate JSON
-		response.getWriter().println(gson.toJson(user));
+		User user = TwitterClone.user;
+		if(user == null) {
+			return;
+		}
+		else {
+			// Generate JSON
+			response.getWriter().println(gson.toJson(user));
+		}	
 
 		Utils.setUserId(request, response, user.getUserId());
 	}
@@ -133,6 +147,7 @@ public class RestAPIHandler extends AbstractHandler {
 		// TODO get User Info from tweetsDAO.
 
 		Tweet tweet = new Tweet();
+		tweet.setSeq(TwitterClone.tweetsList.size());
 		tweet.setFromUserId(userId);
 		tweet.setToUserId("");
 		tweet.setDate(new Date());
