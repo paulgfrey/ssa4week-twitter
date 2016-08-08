@@ -22,12 +22,14 @@ public class TwitterClone {
 	
 	static {
 		Tweet tweet1 = new Tweet();
+		tweet1.setSeq(0);
 		tweet1.setToUserId("User");
 		tweet1.setFromUserId("Follower");
 		tweet1.setMsg("This is a test tweet!");
 		tweet1.setDate(new Date());
 		
 		Tweet tweet2 = new Tweet();
+		tweet2.setSeq(1);
 		tweet2.setToUserId("User");
 		tweet2.setFromUserId("Follower");
 		tweet2.setMsg("This is a test tweet!");

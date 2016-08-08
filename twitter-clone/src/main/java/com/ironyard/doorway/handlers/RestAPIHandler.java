@@ -133,6 +133,7 @@ public class RestAPIHandler extends AbstractHandler {
 		// TODO get User Info from tweetsDAO.
 
 		Tweet tweet = new Tweet();
+		tweet.setSeq(TwitterClone.tweetsList.size());
 		tweet.setFromUserId(userId);
 		tweet.setToUserId("");
 		tweet.setDate(new Date());
