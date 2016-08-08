@@ -1,4 +1,4 @@
-
+//alert (GetCookie());
 
 function ajaxHandler(url, fn){ 
 
@@ -8,6 +8,7 @@ function ajaxHandler(url, fn){
         if (xhttp.readyState === 4 && xhttp.status === 200) {
 			if(xhttp.responseText != "") {
 				var responseData = JSON.parse(xhttp.responseText);
+        //console.log(responseData);
 				   fn(responseData);
 			}
 			else {
@@ -34,7 +35,13 @@ function SetCookie(userId){
 //----------------------------------------------------
 
 function GetCookie(){
-    return document.cookie.split(";")[0].split("=")[1];
+    var rtnId="";
+    if (document.cookie) {
+      rtnId= document.cookie.split(";")[0].split("=")[1];
+    }
+
+    return rtnId;
+
 }
 
 
