@@ -75,6 +75,6 @@ public class MyResourceHandler extends AbstractHandler {
 			}
 		}
 		// Now tack on Cookie
-		Utils.setUserId(response, userId);
+		Utils.setUserId(request, response, userId);
 	}
 }
