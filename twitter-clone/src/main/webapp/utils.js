@@ -1,8 +1,4 @@
 //alert (GetCookie());
-if (GetCookie()===  ""){
-  //no user so send to sign on page
-  window.location="signon.html";
-}
 
 function ajaxHandler(url, fn){ 
 
@@ -36,7 +32,13 @@ function SetCookie(userId){
 //----------------------------------------------------
 
 function GetCookie(){
-    return document.cookie.split(";")[0].split("=")[1];
+    var rtnId="";
+    if (document.cookie) {
+      rtnId= document.cookie.split(";")[0].split("=")[1];
+    }
+
+    return rtnId;
+
 }
 
 

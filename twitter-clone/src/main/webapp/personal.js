@@ -1,5 +1,12 @@
 
- 
+ if (GetCookie()===  "" ){
+  //no user so send to sign on page
+  window.location="signon.html";
+}
+
+//-----------------------------------------------------------------------------
+
+
   ajaxHandler("/rest/tweets/" + GetCookie() + "/personal/", function (resp) {
 
 
@@ -17,6 +24,6 @@
   });
 
 //-----------------------------------------------------------------s
-console.log('cookie:', document.cookie);
+  
   var user=document.getElementById('userName');
   user.innerHTML=GetCookie(); 
