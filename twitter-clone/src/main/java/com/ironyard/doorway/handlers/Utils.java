@@ -19,9 +19,9 @@ public abstract class Utils {
 		return ("");
 	}
 	
-	public static void setUserId(HttpServletResponse response, String userId) {
+	public static void setUserId(HttpServletRequest request, HttpServletResponse response, String userId) {
 		Cookie cookie = new Cookie("userId", userId);
-		cookie.setDomain("localhost");
+		cookie.setDomain(request.getLocalName());
 		cookie.setPath("/");
 		cookie.setSecure(true);
 		cookie.setHttpOnly(true);

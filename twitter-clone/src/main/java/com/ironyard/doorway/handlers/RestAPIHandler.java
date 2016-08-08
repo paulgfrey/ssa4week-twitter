@@ -37,6 +37,8 @@ public class RestAPIHandler extends AbstractHandler {
 			getTweets(target, request, response);
 		} else if (target.contains("followers")) {
 			getFollowers(target, request, response);
+		} else if(target.contains("sendtweet")) {
+			
 		} else {
 			System.err.println("UNHANDLED CALL!");
 			return;
@@ -72,7 +74,7 @@ public class RestAPIHandler extends AbstractHandler {
 		// Generate JSON
 		response.getWriter().println(gson.toJson(users));
 
-		Utils.setUserId(response, userId);
+		Utils.setUserId(request, response, userId);
 	}
 
 	private void getTweets(String target, HttpServletRequest request,
@@ -105,7 +107,7 @@ public class RestAPIHandler extends AbstractHandler {
 		// Generate JSON
 		response.getWriter().println(gson.toJson(tweets));
 
-		Utils.setUserId(response, userId);
+		Utils.setUserId(request, response, userId);
 	}
 
 	private void getUserInfo(String target, HttpServletRequest request,
@@ -132,6 +134,7 @@ public class RestAPIHandler extends AbstractHandler {
 		// Generate JSON
 		response.getWriter().println(gson.toJson(user));
 
-		Utils.setUserId(response, user.getUserId());
+		Utils.setUserId(request, response, user.getUserId());
 	}
+	
 }

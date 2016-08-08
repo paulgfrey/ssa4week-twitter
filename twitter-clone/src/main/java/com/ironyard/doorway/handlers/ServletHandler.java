@@ -55,7 +55,7 @@ public class ServletHandler extends AbstractHandler {
 		System.out.println("Wrote cookie userId=" + userId);
 		System.out.println("Redirect to main.html");
 		
-		response.sendRedirect("main.html");
+		response.sendRedirect("/main.html");
 	}
 	
 	private void signUp(String target, HttpServletRequest request, 
@@ -76,6 +76,6 @@ public class ServletHandler extends AbstractHandler {
 		System.out.println("Wrote cookie userId=" + userId);
 		System.out.println("Redirect to main.html");
 		
-		response.sendRedirect("main.html");
+		response.sendRedirect("/main.html");
 	}
 }
