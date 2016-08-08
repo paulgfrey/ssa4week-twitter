@@ -36,9 +36,6 @@ public class MyResourceHandler extends AbstractHandler {
 		System.out.println("target=" + target);
 		// Get cookie if present
 		String userId = Utils.getUserId(request);
-		if (userId.length() == 0) {
-			userId = "User";
-		}
 		File file = new File(path + target);
 		if (file.exists()) {
 			boolean binary = false;
@@ -87,6 +84,8 @@ public class MyResourceHandler extends AbstractHandler {
 			}
 		}
 		// Now tack on Cookie
-		Utils.setUserId(request, response, userId);
+		if(userId.length() == 0) {
+			Utils.setUserId(request, response, userId);
+		}
 	}
 }
