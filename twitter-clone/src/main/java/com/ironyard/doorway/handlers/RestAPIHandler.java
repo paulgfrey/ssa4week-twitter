@@ -53,9 +53,6 @@ public class RestAPIHandler extends AbstractHandler {
 			HttpServletResponse response) throws IOException {
 
 		String userId = Utils.getUserId(request);
-		if(userId.length() == 0) {
-			userId = (TwitterClone.user != null) ? TwitterClone.user.getUserId() : "";
-		}
 		
 		// Get User ID
 		int ndx = target.lastIndexOf("/");
@@ -73,16 +70,16 @@ public class RestAPIHandler extends AbstractHandler {
 		// Generate JSON
 		response.getWriter().println(gson.toJson(TwitterClone.followersList.toArray(new User[0])));
 
-		Utils.setUserId(request, response, userId);
+		if(userId.length() > 0) {
+			Utils.setUserId(request, response, userId);
+		}
 	}
 
 	private void getTweets(String target, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 
 		String userId = Utils.getUserId(request);
-		if(userId.length() == 0) {
-			userId = (TwitterClone.user != null) ? TwitterClone.user.getUserId() : "";
-		}
+
 		// Get User ID
 		String[] fields = target.split("/");
 		String fieldUserId = fields[3];
@@ -106,12 +103,15 @@ public class RestAPIHandler extends AbstractHandler {
 		// Generate JSON
 		response.getWriter().println(gson.toJson(rtnTweets.toArray(new Tweet[0])));
 		
-		Utils.setUserId(request, response, userId);
+		if(userId.length() > 0) {
+			Utils.setUserId(request, response, userId);
+		}
 	}
 
 	private void getUserInfo(String target, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 
+		String userId = Utils.getUserId(request);
 		// Get User ID
 		int ndx = target.lastIndexOf("/");
 		if (ndx == -1) {
@@ -133,14 +133,18 @@ public class RestAPIHandler extends AbstractHandler {
 			response.getWriter().println(gson.toJson(user));
 		}	
 
-		Utils.setUserId(request, response, user.getUserId());
+		if(userId.length() > 0) {
+			Utils.setUserId(request, response, userId);
+		}
 	}
 	
 	private void sendTweet(String target, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
+		
+		String userId = Utils.getUserId(request);
 		// Get User ID
 		String[] fields = target.split("/");
-		String userId = fields[3];
+		String fieldUserId = fields[3];
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 
@@ -148,7 +152,7 @@ public class RestAPIHandler extends AbstractHandler {
 
 		Tweet tweet = new Tweet();
 		tweet.setSeq(TwitterClone.tweetsList.size());
-		tweet.setFromUserId(userId);
+		tweet.setFromUserId(fieldUserId);
 		tweet.setToUserId("");
 		tweet.setDate(new Date());
 		tweet.setMsg(request.getParameter("tweetmsg"));
@@ -157,7 +161,9 @@ public class RestAPIHandler extends AbstractHandler {
 		
 		TwitterClone.tweetsList.add(tweet);
 
-		Utils.setUserId(request, response, userId);		
+		if(userId.length() > 0) {
+			Utils.setUserId(request, response, userId);		
+		}
 	}
 	
 }
