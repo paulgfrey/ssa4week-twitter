@@ -16,14 +16,16 @@ public abstract class Utils {
 				}
 			}
 		}
-		return ("ERROR");
+		return ("");
 	}
 	
 	public static void setUserId(HttpServletResponse response, String userId) {
 		Cookie cookie = new Cookie("userId", userId);
+		cookie.setDomain("localhost");
 		cookie.setPath("/");
 		cookie.setSecure(true);
 		cookie.setHttpOnly(true);
+		cookie.setMaxAge(7*24*60*60);
 		response.addCookie(cookie);
 		System.out.println("Wrote cookie userId=" + userId);	
 	}
