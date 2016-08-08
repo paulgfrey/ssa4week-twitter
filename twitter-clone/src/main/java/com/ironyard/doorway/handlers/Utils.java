@@ -20,7 +20,7 @@ public abstract class Utils {
 	}
 	
 	public static void setUserId(HttpServletRequest request, HttpServletResponse response, String userId) {
-		Cookie cookie = new Cookie("userId", userId);
+		Cookie cookie = new Cookie("userid", userId);
 		cookie.setDomain(request.getLocalName());
 		cookie.setPath("/");
 		cookie.setSecure(true);

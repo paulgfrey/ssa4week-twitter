@@ -12,6 +12,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.ironyard.doorway.TwitterClone;
 import com.ironyard.doorway.domain.Tweet;
 import com.ironyard.doorway.domain.User;
 
@@ -38,7 +39,7 @@ public class RestAPIHandler extends AbstractHandler {
 		} else if (target.contains("followers")) {
 			getFollowers(target, request, response);
 		} else if(target.contains("sendtweet")) {
-			
+			sendTweet(target, request, response);
 		} else {
 			System.err.println("UNHANDLED CALL!");
 			return;
@@ -82,31 +83,15 @@ public class RestAPIHandler extends AbstractHandler {
 
 		// Get User ID
 		String[] fields = target.split("/");
-		String userId = fields[2];
+		String userId = fields[3];
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 
 		// TODO get User Info from tweetsDAO.
 
-		Tweet tweet1 = new Tweet();
-		tweet1.setToUserId(userId);
-		tweet1.setFromUserId("Follower");
-		tweet1.setMsg("This is a test tweet!");
-		tweet1.setDate(new Date());
-		
-		Tweet tweet2 = new Tweet();
-		tweet2.setToUserId(userId);
-		tweet2.setFromUserId("Follower");
-		tweet2.setMsg("This is a test tweet!");
-		tweet2.setDate(new Date());
-		
-		Tweet[] tweets = new Tweet[2];
-		tweets[0] = tweet1;
-		tweets[1] = tweet2;
-
 		// Generate JSON
-		response.getWriter().println(gson.toJson(tweets));
-
+		response.getWriter().println(gson.toJson(TwitterClone.tweetsList.toArray(new Tweet[0])));
+		
 		Utils.setUserId(request, response, userId);
 	}
 
@@ -135,6 +120,29 @@ public class RestAPIHandler extends AbstractHandler {
 		response.getWriter().println(gson.toJson(user));
 
 		Utils.setUserId(request, response, user.getUserId());
+	}
+	
+	private void sendTweet(String target, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		// Get User ID
+		String[] fields = target.split("/");
+		String userId = fields[3];
+		response.setContentType("text/html;charset=utf-8");
+		response.setStatus(HttpServletResponse.SC_OK);
+
+		// TODO get User Info from tweetsDAO.
+
+		Tweet tweet = new Tweet();
+		tweet.setFromUserId(userId);
+		tweet.setToUserId("");
+		tweet.setDate(new Date());
+		tweet.setMsg(request.getParameter("tweetmsg"));
+		
+		System.out.println("Sending tweet " + tweet.getMsg());
+		
+		TwitterClone.tweetsList.add(tweet);
+
+		Utils.setUserId(request, response, userId);		
 	}
 	
 }
