@@ -67,9 +67,9 @@
 			var useId = document.getElementById("userInfoSpan").innerText;
 			//alert("?tweetmsg=" + encodeURI(msg));
 			ajaxHandler("rest/sendtweet/" + useId + "?tweetmsg=" + encodeURI(msg), function (tweet) {
+				getPulicTweet();
+				document.getElementById("tweet_msg").value = "";
 			});
-			getPulicTweet();
-			document.getElementById("tweet_msg").value = "";
 		}
 	}
 </script>
