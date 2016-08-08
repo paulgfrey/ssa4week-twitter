@@ -10,8 +10,11 @@ function ajaxHandler(url, fn){
 				var responseData = JSON.parse(xhttp.responseText);
         //console.log(responseData);
 				   fn(responseData);
-			   }			
 			}
+			else {
+				fn("");
+			}
+		}
    };
    
  
