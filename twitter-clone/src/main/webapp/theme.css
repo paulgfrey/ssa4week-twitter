@@ -2,7 +2,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 body {
 	margin:0;
 	display: block;
-    background: #eef;
+    background: #f5f8fa;
     color: #292f33;
     font-size: 14px;
     line-height: 18px;
@@ -101,6 +101,12 @@ div.content-left div {
 	margin-top:5px;
 }
 
-#userInfoSpan{
+#userInfoSpan {
 	color:#333;
+}
+
+.floatDiv {
+	display:inline-block;
+	vertical-align: top;
+	margin-right:5px;
 }

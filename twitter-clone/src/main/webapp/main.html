@@ -37,7 +37,7 @@
 <script>
 	ajaxHandler("Rest/userinfo/", function (userInfo) {
 		var userInfoSpan = document.getElementById("userInfoSpan");
-		userInfoSpan.innerHTML = userInfo[0]['firstName'] + " " + userInfo[0]['lastName'];
+		userInfoSpan.innerHTML = userInfo['firstName'] + " " + userInfo['lastName'];
 	});
 
 	getFollowers();

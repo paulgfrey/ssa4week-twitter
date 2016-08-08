@@ -1,13 +1,16 @@
 function getFollowers() {
-	var jsonText = [{userID:'ABC'},{userID:'QWE'},{userID:'DFG'},{userID:'zxcvb'},{userID:'r64saa'}];
+	//var followers = [{userID:'ABC'},{userID:'QWE'},{userID:'DFG'},{userID:'zxcvb'},{userID:'r64saa'}];
 	
-	//var publictweetArr = JSON.parse(jsonText);
+	ajaxHandler("Rest/followers/", function (followers) {
 
-	var publictweet = document.getElementById("followerlist");
-	var htmlStr = "";
-	for(var i in jsonText) {
-		htmlStr += "<div><span class='tweetUserID'>" + jsonText[i]["userID"] + "</span>" + "</div>";
-	}
-	publictweet.innerHTML = htmlStr;
-	
+		var followerDiv = document.getElementById("followerlist");
+		var htmlStr = "";
+		for(var i = 0; i < followers.length; i++) {
+			htmlStr += "<div>";
+			htmlStr += "<div class='floatDiv'><a href='personal.html'><img src='avater/" + followers[i]["userId"] + ".jpg' width='50'></a></div>";
+			htmlStr += "<div class='floatDiv'><a href='personal.html'><span class='tweetUserID'>" + followers[i]["userId"] + "</span>" + "</a></div>";
+			htmlStr += "</div>";
+		}
+		followerDiv.innerHTML = htmlStr;
+	});
 }
