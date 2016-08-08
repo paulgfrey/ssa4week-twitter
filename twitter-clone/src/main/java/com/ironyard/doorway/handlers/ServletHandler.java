@@ -42,6 +42,7 @@ public class ServletHandler extends AbstractHandler {
 	
 	private void signOn(String target, HttpServletRequest request, 
 						HttpServletResponse response) throws IOException {
+		// TODO test
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
