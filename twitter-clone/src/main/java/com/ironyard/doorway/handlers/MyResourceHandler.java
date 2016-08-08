@@ -84,7 +84,7 @@ public class MyResourceHandler extends AbstractHandler {
 			}
 		}
 		// Now tack on Cookie
-		if(userId.length() == 0) {
+		if(userId.length() > 0) {
 			Utils.setUserId(request, response, userId);
 		}
 	}

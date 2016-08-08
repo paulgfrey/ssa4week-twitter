@@ -35,11 +35,15 @@
 
 </div>
 <script>
-	ajaxHandler("Rest/userinfo/", function (userInfo) {
-		alert(userInfo);
-		if(!userInfo) {
-
-			windows.location = "signon.html";
+/*	var userInfo = GetCookie();
+	if(userInfo == undefined) {
+		window.location.href = "signon.html";
+	};
+*/
+	ajaxHandler("rest/userinfo/", function (userInfo) {
+	//alert(userInfo);
+		if(userInfo == "") {
+			window.location.href = "signon.html";
 		}
 		var userInfoSpan = document.getElementById("userInfoSpan");
 		//userInfoSpan.innerHTML = userInfo['firstName'] + " " + userInfo['lastName'];
@@ -47,6 +51,10 @@
 		document.getElementById("userAvater").innerHTML = "<img src='avater/" + userInfo['userId'] + ".jpg' width='72'>";
 	});
 
+/*	if(document.getElementById("userAvater").innerHTML == "") {
+		alert("Not logon");
+	}
+*/	
 	getFollowers();
 	getPulicTweet();
 	
