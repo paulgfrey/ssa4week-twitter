@@ -45,8 +45,8 @@ public class ServletHandler extends AbstractHandler {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-        String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
+        String userId = request.getParameter("uidtxt");
+		String password = request.getParameter("passtxt");
 		
 		// TODO need to use userDAO
 		User user = new User();
