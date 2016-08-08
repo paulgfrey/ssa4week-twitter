@@ -19,18 +19,10 @@ public abstract class Utils {
 		return ("");
 	}
 	
-<<<<<<< HEAD
+
 	public static void setUserId(HttpServletResponse response, String userId) {
 		Cookie cookie = new Cookie("userid", userId);
 		cookie.setHttpOnly(false); // THIS SHOULD BE FALSE TO ACCESS THE COOKIE IN JAVASCRIPT!!
-=======
-	public static void setUserId(HttpServletRequest request, HttpServletResponse response, String userId) {
-		Cookie cookie = new Cookie("userId", userId);
-		cookie.setDomain(request.getLocalName());
-		cookie.setPath("/");
-		cookie.setSecure(true);
-		cookie.setHttpOnly(true);
->>>>>>> a83fd216221f4832c8b3bad74e617863c0728405
 		cookie.setMaxAge(7*24*60*60);
 		response.addCookie(cookie);
 		System.out.println("Wrote cookie userid=" + userId);	
