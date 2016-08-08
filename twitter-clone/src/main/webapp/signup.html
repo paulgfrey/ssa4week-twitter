@@ -2,19 +2,21 @@
 <html>
 
 <head>
-<link rel="stylesheet" href="theme.css">
+
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+<link rel="stylesheet" href="theme.css">
 <title></title>
 
 </head>
 
 <body>
-<form id="regform" name="registerationform" method="POST" action="servelet/signon"  onsubmit="regvalidate(this.form);">
+<form id="regform" name="registerationform" method="POST" action="servlet/signup"  onsubmit="regvalidate(this.form);">
+
 <div style = "height:10px;width:100px; horizontal-align:center; margin-left:40%; margin-right:25%; margin-bottom:90px; margin-top:5%; ";>
 <img src="images/twitter-header.jpg" alt="twitter clone" style="width:224px;height:78px;margin-left:5%; margin-right:75%; margin-bottom:100px; ">
 </div>
 
-<div id="wrap"style=" horizontal-align:center; margin-left:40%; margin-right:25%; margin-bottom:100px; margin-top:7%";>
+<div id="wrap" style=" horizontal-align:center; margin-left:40%; margin-right:25%; margin-bottom:100px; margin-top:7%;">
   
     <table border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width="300">
       <tr>
@@ -27,11 +29,23 @@
         <td class="cntr"><input type="password" name="lastname" size="20"> </td>
       </tr>
      
-     
+      <tr>
+        <td>User Name:</td>
+        <td class="cntr">
+        <input type="text" name="fnametxt" size="20"> </td>
+      </tr>
+	   <tr>
+        <td>Last Name: </td>
+        <td class="cntr">
+        <input type="text" name="passtxt"   size="20"> </td>
+      </tr>
+      
     </table>
-    <input id="reg" name="reg" type="button" onclick="regvalidate(this.form)" value="LogIn"  >
- 
-  <div id="une" class="a13B">
+	<br>
+	<br>
+    <input id="reg" name="reg" type="button" onclick="regvalidate(this.form)" value="Register Now"  >
+ <br>
+  <div id="une" >
   </div>
 </div>
 
@@ -74,5 +88,6 @@ function regvalidate(formObj)
 
 
 
+</html>
 
 
