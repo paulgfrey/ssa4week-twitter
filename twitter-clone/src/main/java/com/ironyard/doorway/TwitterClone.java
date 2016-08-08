@@ -1,16 +1,42 @@
 package com.ironyard.doorway;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
 
+import com.ironyard.doorway.domain.Tweet;
+import com.ironyard.doorway.domain.User;
 import com.ironyard.doorway.handlers.MyResourceHandler;
 import com.ironyard.doorway.handlers.RestAPIHandler;
 import com.ironyard.doorway.handlers.ServletHandler;
 
 public class TwitterClone {
-
+	public static List<Tweet> tweetsList = new ArrayList<Tweet>();
+	public static User user = null;
+	public static List<User> followersList = new ArrayList<User>();
+	
+	static {
+		Tweet tweet1 = new Tweet();
+		tweet1.setToUserId("User");
+		tweet1.setFromUserId("Follower");
+		tweet1.setMsg("This is a test tweet!");
+		tweet1.setDate(new Date());
+		
+		Tweet tweet2 = new Tweet();
+		tweet2.setToUserId("User");
+		tweet2.setFromUserId("Follower");
+		tweet2.setMsg("This is a test tweet!");
+		tweet2.setDate(new Date());
+		
+		tweetsList.add(tweet1);
+		tweetsList.add(tweet2);
+	};
+	
 	public TwitterClone(int port) throws Exception {
         Server server = new Server(port);
         

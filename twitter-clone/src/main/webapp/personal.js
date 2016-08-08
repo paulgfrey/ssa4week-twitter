@@ -1,6 +1,5 @@
 
  
-
   ajaxHandler("/rest/tweets/" + GetCookie() + "/personal/", function (resp) {
 
   		
@@ -18,9 +17,6 @@
   });
 
 //-----------------------------------------------------------------s
-
+console.log('cookie:', document.cookie);
   var user=document.getElementById('userName');
-  user.innerHTML=GetCookie(); //userName;
-  //user.innerHTML=user;
-
- 
+  user.innerHTML=GetCookie(); 
