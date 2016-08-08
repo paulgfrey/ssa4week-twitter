@@ -36,6 +36,11 @@
 </div>
 <script>
 	ajaxHandler("Rest/userinfo/", function (userInfo) {
+		alert(userInfo);
+		if(!userInfo) {
+
+			windows.location = "signon.html";
+		}
 		var userInfoSpan = document.getElementById("userInfoSpan");
 		//userInfoSpan.innerHTML = userInfo['firstName'] + " " + userInfo['lastName'];
 		userInfoSpan.innerHTML = userInfo['userId'];
@@ -52,7 +57,8 @@
 		}
 		else {
 			var useId = document.getElementById("userInfoSpan").innerText;
-			ajaxHandler("Rest/sendtweet/" + useId + "?tweetmsg=" + encodeURI(msg), function (userInfo) {
+			//alert("?tweetmsg=" + encodeURI(msg));
+			ajaxHandler("rest/sendtweet/" + useId + "?tweetmsg=" + encodeURI(msg), function (tweet) {
 			});
 			getPulicTweet();
 			document.getElementById("tweet_msg").value = "";
