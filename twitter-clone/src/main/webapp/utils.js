@@ -1,4 +1,8 @@
-
+// alert (GetCookie());
+// if (GetCookie()===  ""){
+//   //no user so send to sign on page
+//   window.location="signon.html";
+// }
 
 function ajaxHandler(url, fn){ 
 
