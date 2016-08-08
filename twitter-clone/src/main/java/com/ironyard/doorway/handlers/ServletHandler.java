@@ -46,6 +46,7 @@ public class ServletHandler extends AbstractHandler {
 		String password = request.getParameter("password");
 		
 		// TODO need to use userDAO
+<<<<<<< HEAD
 		
 		Cookie cookie = new Cookie("userId", userId);
 		cookie.setPath("/");
@@ -55,6 +56,16 @@ public class ServletHandler extends AbstractHandler {
 		System.out.println("Wrote cookie userId=" + userId);
 		System.out.println("Redirect to main.html");
 		
+=======
+		User user = new User();
+		user.setUserId(request.getParameter("uidtxt"));
+		user.setPassword(request.getParameter("passtxt"));
+		
+		TwitterClone.user = user;
+		
+		Utils.setUserId(request, response, userId);
+				
+>>>>>>> e7c146eea4f2fed4abee25b37d7129ce8e34d60e
 		response.sendRedirect("/main.html");
 	}
 	
@@ -63,19 +74,18 @@ public class ServletHandler extends AbstractHandler {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-        String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		
 		// TODO need to use userDAO
+		User user = new User();
+		user.setUserId(request.getParameter("uidtxt"));
+		user.setPassword(request.getParameter("passtxt"));
+		user.setFirstName(request.getParameter("fnametxt"));
+		user.setLastName(request.getParameter("lastname"));
 		
-		Cookie cookie = new Cookie("userId", userId);
-		cookie.setPath("/");
-		cookie.setSecure(true);
-		cookie.setHttpOnly(true);
-		response.addCookie(cookie);
-		System.out.println("Wrote cookie userId=" + userId);
-		System.out.println("Redirect to main.html");
+		// TODO need to use userDAO	
 		
+		TwitterClone.user = user;
+		
+		Utils.setUserId(request, response, user.getUserId());
 		response.sendRedirect("/main.html");
 	}
 }
