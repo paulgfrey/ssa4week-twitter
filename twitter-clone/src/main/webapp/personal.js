@@ -14,8 +14,8 @@
   		var tweetDiv =document.getElementById('tweets');
 		  var dataStr="";
            for (var x in resp){
-                dataStr+='<p class="firstln">' + resp[x].fromUserId ;
-                dataStr += '</p> <p>' + resp[x].msg + '</p><p class="thirdln">' + resp[x].date + '</p><br>';
+                dataStr+='<div id="newtweet"><p class="firstln">' + resp[x].fromUserId + '<p class="thirdln">' + resp[x].date + '</p>' ;
+                dataStr += '</p>' + resp[x].msg  + '</div>';
                 
             }
             tweetDiv.innerHTML=dataStr;
