@@ -3,6 +3,7 @@ package com.ironyard.doorway.handlers;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -51,21 +52,12 @@ public class MyResourceHandler extends AbstractHandler {
 			} else if (target.endsWith(".js")) {
 				response.setContentType("application/javascript");
 			}
-			FileReader fr = new FileReader(file);
+			FileReader fr = null;
 			try {
 				if (binary) {
-					response.setContentLength((int) file.length());
-
-					FileInputStream in = new FileInputStream(file);
-					OutputStream out = response.getOutputStream();
-
-					// Copy the contents of the file to the output stream
-					byte[] buf = new byte[1024];
-					int count = 0;
-					while ((count = in.read(buf)) >= 0) {
-						out.write(buf, 0, count);
-					}
+					writeBinary(file, response); 
 				} else {
+					fr = new FileReader(file);
 					BufferedReader br = new BufferedReader(fr);
 					String line;
 					while ((line = br.readLine()) != null) {
@@ -83,9 +75,28 @@ public class MyResourceHandler extends AbstractHandler {
 				}
 			}
 		}
+		else {
+			if(target.contains("avater")) {
+				writeBinary(new File("./src/main/webapp/images/default.png"), response);
+			}
+		}
 		// Now tack on Cookie
 		if(userId.length() > 0) {
 			Utils.setUserId(request, response, userId);
+		}
+	}
+	
+	private void writeBinary(File file, HttpServletResponse response) throws IOException {
+		response.setContentLength((int) file.length());
+
+		FileInputStream in = new FileInputStream(file);
+		OutputStream out = response.getOutputStream();
+
+		// Copy the contents of the file to the output stream
+		byte[] buf = new byte[1024];
+		int count = 0;
+		while ((count = in.read(buf)) >= 0) {
+			out.write(buf, 0, count);
 		}
 	}
 }
