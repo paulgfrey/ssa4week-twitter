@@ -11,7 +11,7 @@ public abstract class Utils {
 
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("userId")) {
+				if (cookie.getName().equals("userid")) {
 					return (cookie.getValue());
 				}
 			}
@@ -20,13 +20,10 @@ public abstract class Utils {
 	}
 	
 	public static void setUserId(HttpServletResponse response, String userId) {
-		Cookie cookie = new Cookie("userId", userId);
-		cookie.setDomain("localhost");
-		cookie.setPath("/");
-		cookie.setSecure(true);
-		cookie.setHttpOnly(true);
+		Cookie cookie = new Cookie("userid", userId);
+		cookie.setHttpOnly(false); // THIS SHOULD BE FALSE TO ACCESS THE COOKIE IN JAVASCRIPT!!
 		cookie.setMaxAge(7*24*60*60);
 		response.addCookie(cookie);
-		System.out.println("Wrote cookie userId=" + userId);	
+		System.out.println("Wrote cookie userid=" + userId);	
 	}
 }
