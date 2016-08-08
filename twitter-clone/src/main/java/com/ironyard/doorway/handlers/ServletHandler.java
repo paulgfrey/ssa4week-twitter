@@ -56,10 +56,7 @@ public class ServletHandler extends AbstractHandler {
 		TwitterClone.user = user;
 		
 		Utils.setUserId(request, response, userId);
-		
-		System.out.println("Wrote cookie userId=" + userId);
-		System.out.println("Redirect to main.html");
-		
+				
 		response.sendRedirect("/main.html");
 	}
 	
@@ -68,19 +65,18 @@ public class ServletHandler extends AbstractHandler {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-        String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		
 		// TODO need to use userDAO
+		User user = new User();
+		user.setUserId(request.getParameter("uidtxt"));
+		user.setPassword(request.getParameter("passtxt"));
+		user.setFirstName(request.getParameter("fnametxt"));
+		user.setLastName(request.getParameter("lastname"));
 		
-		Cookie cookie = new Cookie("userId", userId);
-		cookie.setPath("/");
-		cookie.setSecure(true);
-		cookie.setHttpOnly(true);
-		response.addCookie(cookie);
-		System.out.println("Wrote cookie userId=" + userId);
-		System.out.println("Redirect to main.html");
+		// TODO need to use userDAO	
 		
+		TwitterClone.user = user;
+		
+		Utils.setUserId(request, response, user.getUserId());
 		response.sendRedirect("/main.html");
 	}
 }
