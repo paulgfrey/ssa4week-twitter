@@ -2,10 +2,10 @@
  
   ajaxHandler("/rest/tweets/" + GetCookie() + "/personal/", function (resp) {
 
-  		
+
 
   		var tweetDiv =document.getElementById('tweets');
-		var dataStr="";
+		  var dataStr="";
            for (var x in resp){
                 dataStr+='<p class="firstln">' + resp[x].fromUserId ;
                 dataStr += '</p> <p>' + resp[x].msg + '</p><p class="thirdln">' + resp[x].date + '</p><br>';
