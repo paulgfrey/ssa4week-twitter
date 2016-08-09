@@ -166,4 +166,8 @@ public class RestAPIHandler extends AbstractHandler {
 		}
 	}
 	
+//	private String wrapImages(String msg) {
+//		// TODO Need to replace http://*.jpg with <img src=> tag.
+//	}
+//	
 }

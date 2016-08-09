@@ -30,11 +30,15 @@ public class MyResourceHandler extends AbstractHandler {
 		if (target != null) {
 			if (!(target.endsWith(".html") || target.endsWith("htm")
 					|| target.endsWith(".css") || target.endsWith(".js")
-					|| target.endsWith(".jpg") || target.endsWith(".png"))) {
+					|| target.endsWith(".jpg") || target.endsWith(".png") ||
+					target.equals("/"))) {
 				return;
 			}
 		}
 		System.out.println("target=" + target);
+		if(target.equals("/")) {
+			target = target = "/index.html";
+		}
 		// Get cookie if present
 		String userId = Utils.getUserId(request);
 		File file = new File(path + target);
